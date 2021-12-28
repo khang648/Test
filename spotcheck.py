@@ -71,6 +71,8 @@ thr1_set = 1
 thr2_set = 1
 thr3l_set = 1
 thr3h_set = 1
+sl1_value = '8.3'
+sl2_value = '7.8'
 
 fr = open("/home/pi/Spotcheck/check.txt","r")
 code = (fr.readline()).strip()
@@ -940,16 +942,15 @@ def mainscreen():
         def ct_click():
             configmc1_labelframe = LabelFrame(mainscreen_labelframe, bg='white', width=624, height=478)
             configmc1_labelframe.place(x=172,y=0)
-            config1_lableframe = LabelFrame(configmc1_labelframe, bg='white', text="Loại kit ly trích", width=402, height=120)
+            config1_lableframe = LabelFrame(configmc1_labelframe, bg='white', text="Ngưỡng sàn lọc", width=402, height=120)
             config1_lableframe.place(x=107,y=130)
-            ct_label = Label(configmc1_labelframe, text='CHỌN KIT LY TRÍCH',font=('bold'), width=61, bg='dodger blue')
+            ct_label = Label(configmc1_labelframe, text='CHỌN NGƯỠNG SÀN LỌC',font=('bold'), width=61, bg='dodger blue')
             ct_label.place(x=3,y=1)
 
-            fr4 = open("/home/pi/Spotcheck/ct.txt","r")
-            firstline = (fr4.readline()).strip()
-            secondline = (fr4.readline()).strip()
-            thirdline = (fr4.readline()).strip()
-            fourthline = (fr4.readline()).strip()
+            fr5 = open("/home/pi/Spotcheck/ct.txt","r")
+            firstline = (fr5.readline()).strip()
+            secondline = (fr5.readline()).strip()
+            thirdline = (fr5.readline()).strip()
 
             def kit1_click():
                 kit1_button['bg'] = 'lawn green'
@@ -963,64 +964,33 @@ def mainscreen():
                 kit1_button['fg'] = 'grey70'
                 kit2_button['fg'] = 'black'
 
-            var = IntVar()
-            radio1 = Radiobutton(configmc1_labelframe, bg='white', width=19, font=('Courier',15), borderwidth=0, text="Ct ≤ 30 (Điều trị)", variable=var, value=1)
-            radio1.place(x=175,y=250)
-            radio2 = Radiobutton(configmc1_labelframe, bg='white', width=19, font=('Courier',15), borderwidth=0, text="Ct > 30 (Tầm soát)", variable=var, value=2)
-            radio2.place(x=175,y=277)
-
-            if(thirdline=='7.5' or thirdline=='7.3'):
-                kit1_button = Button(config1_lableframe, bg="lawn green", text="Kit ly trích Phù Sa", font=("Helvetica",12, 'bold'), borderwidth=0, height=4, width=17, command=kit1_click)
+            if(secondline==sl1_value):
+                kit1_button = Button(config1_lableframe, bg="lawn green", text="Sàn lọc 1", font=("Helvetica",12, 'bold'), borderwidth=0, height=4, width=17, command=kit1_click)
                 kit1_button.place(x=8,y=2)
-                kit2_button = Button(config1_lableframe, bg="grey88", fg='grey70', text="Kit ly trích khác", font=("Helvetica",12,'bold'), borderwidth=0, height=4, width=17, command=kit2_click)
+                kit2_button = Button(config1_lableframe, bg="grey88", fg='grey70', text="Sàn lọc 2", font=("Helvetica",12,'bold'), borderwidth=0, height=4, width=17, command=kit2_click)
                 kit2_button.place(x=210,y=2)
-                if(thirdline=='7.5'):
-                    radio1.select()
-                else:
-                    radio2.select()
 
             else:
-                kit1_button = Button(config1_lableframe, bg="grey88", fg='grey70', text="Kit ly trích Phù Sa", font=("Helvetica",12, 'bold'), borderwidth=0, height=4, width=17, command=kit1_click)
+                kit1_button = Button(config1_lableframe, bg="grey88", fg='grey70', text="Sàn lọc 1", font=("Helvetica",12, 'bold'), borderwidth=0, height=4, width=17, command=kit1_click)
                 kit1_button.place(x=8,y=2)
-                kit2_button = Button(config1_lableframe, bg="lawn green", text="Kit ly trích khác", font=("Helvetica",12,'bold'), borderwidth=0, height=4, width=17, command=kit2_click)
+                kit2_button = Button(config1_lableframe, bg="lawn green", text="Sàn lọc 2", font=("Helvetica",12,'bold'), borderwidth=0, height=4, width=17, command=kit2_click)
                 kit2_button.place(x=210,y=2)
-                if(thirdline=='7.8'):
-                    radio1.select()
-                else:
-                    radio2.select()
 
             def save_click():
                 msg = messagebox.askquestion("Lưu ", "Bạn có muốn lưu lựa chọn ?")
                 if(msg=='yes'):
-                    radio_select = var.get()
-                    if(radio_select==1 and kit1_button['bg']=='lawn green'):
+                    if(kit1_button['bg']=='lawn green'):
                         tc= open("/home/pi/Spotcheck/ct.txt","w")
                         tc.truncate(0)
-                        tc.writelines("7.0"+"\n")
-                        tc.writelines("7.0"+"\n")
-                        tc.writelines("7.5"+"\n")
-                        tc.writelines("7.8"+"\n")
+                        tc.writelines(str(round(float(sl1_value)-1,1))+"\n")
+                        tc.writelines(sl1_value+"\n")
+                        tc.writelines(sl1_value+"\n")
                     if(radio_select==2 and kit1_button['bg']=='lawn green'):
                         tc= open("/home/pi/Spotcheck/ct.txt","w")
                         tc.truncate(0)
-                        tc.writelines("7.0"+"\n")
-                        tc.writelines("7.0"+"\n")
-                        tc.writelines("7.3"+"\n")
-                        tc.writelines("7.7"+"\n")
-                    if(radio_select==1 and kit2_button['bg']=='lawn green'):
-                        tc= open("/home/pi/Spotcheck/ct.txt","w")
-                        tc.truncate(0)
-                        tc.writelines("7.0"+"\n")
-                        tc.writelines("7.0"+"\n")
-                        tc.writelines("7.8"+"\n")
-                        tc.writelines("8"+"\n")
-                    if(radio_select==2 and kit2_button['bg']=='lawn green'):
-                        tc= open("/home/pi/Spotcheck/ct.txt","w")
-                        tc.truncate(0)
-                        tc.writelines("7.0"+"\n")
-                        tc.writelines("7.0"+"\n")
-                        tc.writelines("7.7"+"\n")
-                        tc.writelines("7.9"+"\n")
+                        tc.writelines(str(round(float(sl2_value)-1,1))+"\n")
+                        tc.writelines(sl2_value+"\n")
+                        tc.writelines(sl2_value+"\n")
 
                     messagebox.showinfo("", "Đã lưu xong !")
 
