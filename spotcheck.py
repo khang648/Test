@@ -942,9 +942,9 @@ def mainscreen():
         def ct_click():
             configmc1_labelframe = LabelFrame(mainscreen_labelframe, bg='white', width=624, height=478)
             configmc1_labelframe.place(x=172,y=0)
-            config1_lableframe = LabelFrame(configmc1_labelframe, bg='white', text="Ngưỡng sàn lọc", width=402, height=120)
+            config1_lableframe = LabelFrame(configmc1_labelframe, bg='white', text="Ngưỡng sàng lọc", width=402, height=120)
             config1_lableframe.place(x=107,y=130)
-            ct_label = Label(configmc1_labelframe, text='CHỌN NGƯỠNG SÀN LỌC',font=('bold'), width=61, bg='dodger blue')
+            ct_label = Label(configmc1_labelframe, text='CHỌN NGƯỠNG SÀNG LỌC',font=('bold'), width=61, bg='dodger blue')
             ct_label.place(x=3,y=1)
 
             fr5 = open("/home/pi/Spotcheck/ct.txt","r")
@@ -965,15 +965,15 @@ def mainscreen():
                 kit2_button['fg'] = 'black'
 
             if(secondline==sl1_value):
-                kit1_button = Button(config1_lableframe, bg="lawn green", text="Sàn lọc 1", font=("Helvetica",12, 'bold'), borderwidth=0, height=4, width=17, command=kit1_click)
+                kit1_button = Button(config1_lableframe, bg="lawn green", text="Sàng lọc 1", font=("Helvetica",12, 'bold'), borderwidth=0, height=4, width=17, command=kit1_click)
                 kit1_button.place(x=8,y=2)
-                kit2_button = Button(config1_lableframe, bg="grey88", fg='grey70', text="Sàn lọc 2", font=("Helvetica",12,'bold'), borderwidth=0, height=4, width=17, command=kit2_click)
+                kit2_button = Button(config1_lableframe, bg="grey88", fg='grey70', text="Sàng lọc 2", font=("Helvetica",12,'bold'), borderwidth=0, height=4, width=17, command=kit2_click)
                 kit2_button.place(x=210,y=2)
 
             else:
-                kit1_button = Button(config1_lableframe, bg="grey88", fg='grey70', text="Sàn lọc 1", font=("Helvetica",12, 'bold'), borderwidth=0, height=4, width=17, command=kit1_click)
+                kit1_button = Button(config1_lableframe, bg="grey88", fg='grey70', text="Sàng lọc 1", font=("Helvetica",12, 'bold'), borderwidth=0, height=4, width=17, command=kit1_click)
                 kit1_button.place(x=8,y=2)
-                kit2_button = Button(config1_lableframe, bg="lawn green", text="Sàn lọc 2", font=("Helvetica",12,'bold'), borderwidth=0, height=4, width=17, command=kit2_click)
+                kit2_button = Button(config1_lableframe, bg="lawn green", text="Sàng lọc 2", font=("Helvetica",12,'bold'), borderwidth=0, height=4, width=17, command=kit2_click)
                 kit2_button.place(x=210,y=2)
 
             def save_click():
@@ -1137,7 +1137,7 @@ def mainscreen():
             back_button = Button(configmc2_labelframe, bg="grey88", text="Trở lại", borderwidth=0, height=3, width=10, command=back_click)
             back_button.place(x=188,y=390)
 
-        ct_button = Button(configmc_labelframe, bg="grey88", text="Chọn ngưỡng sàn lọc", borderwidth=0, height=4, width=15, command=ct_click)
+        ct_button = Button(configmc_labelframe, bg="grey88", text="Chọn ngưỡng sàng lọc", borderwidth=0, height=4, width=15, command=ct_click)
         ct_button.place(x=230,y=150)
         server_button = Button(configmc_labelframe, bg="grey85", text="Server", borderwidth=0, height=4, width=15, command=server_click)
         server_button.place(x=230,y=240)
