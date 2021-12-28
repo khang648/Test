@@ -985,7 +985,7 @@ def mainscreen():
                         tc.writelines(str(round(float(sl1_value)-1,1))+"\n")
                         tc.writelines(sl1_value+"\n")
                         tc.writelines(sl1_value+"\n")
-                    if(radio_select==2 and kit1_button['bg']=='lawn green'):
+                    else:
                         tc= open("/home/pi/Spotcheck/ct.txt","w")
                         tc.truncate(0)
                         tc.writelines(str(round(float(sl2_value)-1,1))+"\n")
@@ -1137,7 +1137,7 @@ def mainscreen():
             back_button = Button(configmc2_labelframe, bg="grey88", text="Trở lại", borderwidth=0, height=3, width=10, command=back_click)
             back_button.place(x=188,y=390)
 
-        ct_button = Button(configmc_labelframe, bg="grey88", text="Chọn kit ly trích", borderwidth=0, height=4, width=15, command=ct_click)
+        ct_button = Button(configmc_labelframe, bg="grey88", text="Chọn ngưỡng sàn lọc", borderwidth=0, height=4, width=15, command=ct_click)
         ct_button.place(x=230,y=150)
         server_button = Button(configmc_labelframe, bg="grey85", text="Server", borderwidth=0, height=4, width=15, command=server_click)
         server_button.place(x=230,y=240)
