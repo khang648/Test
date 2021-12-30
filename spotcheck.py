@@ -72,7 +72,7 @@ thr2_set = 1
 thr3l_set = 1
 thr3h_set = 1
 sl1_value = '8.3'
-sl2_value = '7.8'
+sl2_value = '7.7'
 
 fr = open("/home/pi/Spotcheck/check.txt","r")
 code = (fr.readline()).strip()
@@ -984,13 +984,13 @@ def mainscreen():
                         tc.truncate(0)
                         tc.writelines(str(round(float(sl1_value)-1,1))+"\n")
                         tc.writelines(sl1_value+"\n")
-                        tc.writelines(sl1_value+"\n")
+                        tc.writelines('12'+"\n")
                     else:
                         tc= open("/home/pi/Spotcheck/ct.txt","w")
                         tc.truncate(0)
                         tc.writelines(str(round(float(sl2_value)-1,1))+"\n")
                         tc.writelines(sl2_value+"\n")
-                        tc.writelines(sl2_value+"\n")
+                        tc.writelines('12'+"\n")
 
                     messagebox.showinfo("", "Đã lưu xong !")
 
