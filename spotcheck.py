@@ -984,13 +984,13 @@ def mainscreen():
                         tc.truncate(0)
                         tc.writelines(str(round(float(sl1_value)-1,1))+"\n")
                         tc.writelines(sl1_value+"\n")
-                        tc.writelines('12'+"\n")
+                        tc.writelines('12.5'+"\n")
                     else:
                         tc= open("/home/pi/Spotcheck/ct.txt","w")
                         tc.truncate(0)
                         tc.writelines(str(round(float(sl2_value)-1,1))+"\n")
                         tc.writelines(sl2_value+"\n")
-                        tc.writelines('12'+"\n")
+                        tc.writelines('12.5'+"\n")
 
                     messagebox.showinfo("", "Đã lưu xong !")
 
@@ -2785,7 +2785,6 @@ def analysis():
                             for i in range (0,48):
                                 label[i]['text'] = str('%.1f'%t3_result[i])                         
                             root.update_idletasks()
-                            sleep(1)
                             subprocess.call(["scrot",path3+"/gia-tri.jpg"])
                             sleep(1)
                             global foldername
